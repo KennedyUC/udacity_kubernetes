@@ -25,16 +25,9 @@ You can find a detailed [project rubric, here](https://review.udacity.com/#!/rub
 
 ## Setup the Environment
 
-* Create a virtualenv with Python 3.7 and activate it. Refer to this link for help on specifying the Python version in the virtualenv. 
-```bash
-python3 -m pip install --user virtualenv
-# You should have Python 3.7 available in your host. 
-# Check the Python path using `which python3`
-# Use a command similar to this one:
-python3 -m virtualenv --python=<path-to-Python3.7> .devops
-source .devops/bin/activate
-```
-* Run `make install` to install the necessary dependencies
+* Create a virtualenv and activate it by executing `python3 -m venv venv`
+* Source the virtual environment: `source venv/bin/activate`
+* Run `make install` to install the necessary dependencies 
 
 ### Running `app.py`
 
@@ -46,5 +39,30 @@ source .devops/bin/activate
 
 * Setup and Configure Docker locally
 * Setup and Configure Kubernetes locally
+* Create a kubernetes secret to store the credentials of the private Docker registry
+  ```bash
+    kubectl create secret docker-registry regcred \
+        --docker-server=https://index.docker.io/v1/ \
+        --docker-username=<DOCKERHUB_USERNAME> \
+        --docker-password=<DOCKERHUB_PASSWORD> \
+        --docker-email=<DOCKER_EMAIL>
+  ```
 * Create Flask app in Container
 * Run via kubectl
+
+
+## Directory Structure
+
+| Directory/File | Description |
+| ---- | ----------- |
+| `.circleci/config.yml` | CircleCI configuration |
+| `model_data` | Trained model data for housing prices in Boston |
+| `output_txt_files` | Docker and Kubernetes log output |
+| `app.py` | REST source code for predicting housing prices in Boston |
+| `Dockerfile` | Dockerfile containing the application and its dependencies |
+| `make_prediction.sh` | Calls prediction REST endpoint and simulates sample prediction |
+| `Makefile` | Build file of the project |
+| `requirements.txt` | Python requirements |
+| `run_docker.sh` | Shell script for creating and running docker container |
+| `run_kubernetes.sh` | Shell script to deploy docker container on Kubernetes cluster |
+| `upload_docker.sh` | Shell script for uploading locally built docker image to dockerhub repository |
