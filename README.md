@@ -1,4 +1,4 @@
-<include a CircleCI status badge, here>
+<include a CircleCI status badge, here>  
 [![kennedyuche](https://circleci.com/gh/KennedyUC/udacity_kubernetes.svg?style=svg)](https://circleci.com/gh/KennedyUC/udacity_kubernetes)
 
 ## Project Overview
